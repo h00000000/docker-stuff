@@ -9,8 +9,7 @@ fi
 ./disable.sh
 
 docker-compose build
-docker-compose up -d --no-recreate
-
+docker-compose --compatibility up -d --no-recreate
 docker-compose ps
 
 ufw allow 8081/tcp

@@ -11,7 +11,7 @@ fi
 mkdir -p /opt/minecraft/plugins/bStats/
 echo "enabled: false" > /opt/minecraft/plugins/bStats/config.yml
 
-docker-compose up -d --no-recreate
+docker-compose --compatibility up -d --no-recreate
 docker-compose ps
 
 ufw allow 25565/tcp
