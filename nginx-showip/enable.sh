@@ -8,12 +8,9 @@ fi
 
 ./disable.sh
 
-# volume folder
-#mkdir -p /opt/<VOLUME>
-
-#docker-compose build
+docker-compose build
 docker-compose up -d --no-recreate
+
 docker-compose ps
 
-# ufw rule
-#ufw allow <PORT>/tcp
+ufw allow 8081/tcp

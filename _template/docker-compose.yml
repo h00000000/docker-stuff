@@ -1,6 +1,7 @@
 version: '3'
 services:
   <NAME>:
+    build: .
     image: <IMAGE-PATH>
     volumes:
       - /opt/<HOST-PATH>:<CONTAINER-PATH>

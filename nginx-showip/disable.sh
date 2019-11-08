@@ -6,14 +6,7 @@ then
   cd "$SCRIPTDIR" || exit
 fi
 
-./disable.sh
+docker-compose stop -t 10
+docker-compose rm -f
 
-# volume folder
-#mkdir -p /opt/<VOLUME>
-
-#docker-compose build
-docker-compose up -d --no-recreate
-docker-compose ps
-
-# ufw rule
-#ufw allow <PORT>/tcp
+ufw delete allow 8081/tcp

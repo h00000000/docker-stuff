@@ -1,0 +1,16 @@
+version: '3'
+services:
+  worker:
+    build: .
+    ports:
+      - "8081:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 0.1G
+      restart_policy:
+        condition: unless-stopped
+        max_attempts: 10
+        window: 60s
+        delay: 1s
