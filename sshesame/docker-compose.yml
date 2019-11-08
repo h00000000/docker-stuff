@@ -1,0 +1,16 @@
+version: '3'
+services:
+  honeypot:
+    build: .
+    ports:
+      - "2022:2022"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: 50M
+      restart_policy:
+        condition: unless-stopped
+        max_attempts: 10
+        window: 60s
+        delay: 1s
