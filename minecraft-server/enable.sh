@@ -3,8 +3,8 @@
 docker-compose stop -t 60
 docker-compose rm -f
 
-mkdir -p /opt/minecraft
-chown -R 1000:1000 /opt/minecraft
+mkdir -p /opt/minecraft/plugins/bStats/
+echo "enabled: false" > /opt/minecraft/plugins/bStats/config.yml
 
 ufw allow 25565/tcp
 
