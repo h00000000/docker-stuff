@@ -1,0 +1,22 @@
+version: '3'
+services:
+  <NAME>:
+    image: <IMAGE-PATH>
+    volumes:
+      - /opt/<HOST-PATH>:<CONTAINER-PATH>
+    ports:
+      - "<HOST-PORT>:<CONTAINER-PORT>"
+    environment:
+      EXAMPLE_A: "TRUE"
+      EXAMPLE_B: 0.1
+      EXAMPLE_C: String
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 0.5G
+      restart_policy:
+        condition: unless-stopped
+        max_attempts: 10
+        window: 60s
+        delay: 1s
