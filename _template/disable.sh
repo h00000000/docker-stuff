@@ -10,4 +10,4 @@ docker-compose stop -t 10
 docker-compose rm -f
 
 # ufw rule
-#ufw deny <PORT>/tcp
+#ufw delete allow <PORT>/tcp

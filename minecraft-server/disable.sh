@@ -9,4 +9,4 @@ fi
 docker-compose stop -t 60
 docker-compose rm -f
 
-ufw deny 25565/tcp
+ufw delete allow 25565/tcp
