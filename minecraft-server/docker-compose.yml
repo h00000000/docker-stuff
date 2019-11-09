@@ -17,9 +17,7 @@ services:
       resources:
         limits:
           cpus: "1.00"
-          memory: "2.1G"
+          memory: "2176M"
       restart_policy:
         condition: on-failure
         max_attempts: 10
-        window: 180s
-        delay: 1s

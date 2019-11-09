@@ -14,10 +14,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.10"
-          memory: "100M"
+          cpus: "0.20"
+          memory: "64M"
       restart_policy:
         condition: on-failure
         max_attempts: 10
-        window: 60s
-        delay: 1s
