@@ -10,5 +10,6 @@ fi
 docker-compose stop -t 10
 docker-compose rm -f
 
-# ufw rule
-#ufw delete allow <PORT>/tcp
+ufw delete allow 9987/udp
+ufw delete allow 10011/tcp
+ufw delete allow 30033/tcp

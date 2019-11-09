@@ -1,0 +1,22 @@
+version: '3'
+services:
+  server:
+    image: teamspeak
+    volumes:
+      - /opt/teamspeak3:/var/ts3server
+    ports:
+      - 9987:9987/udp
+      - 10011:10011
+      - 30033:30033
+    environment:
+      TS3SERVER_LICENSE: accept
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "256M"
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+        window: 60s
+        delay: 1s

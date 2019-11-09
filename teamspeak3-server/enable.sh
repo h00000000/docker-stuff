@@ -7,8 +7,13 @@ then
   cd "$SCRIPTDIR" || exit
 fi
 
-docker-compose stop -t 10
-docker-compose rm -f
+./disable.sh
 
-# ufw rule
-#ufw delete allow <PORT>/tcp
+mkdir -p /opt/teamspeak3
+
+docker-compose --compatibility up -d --no-recreate
+docker-compose ps
+
+ufw allow 9987/udp
+ufw allow 10011/tcp
+ufw allow 30033/tcp
