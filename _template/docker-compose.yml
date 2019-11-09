@@ -6,7 +6,7 @@ services:
     volumes:
       - <HOST-PATH>:<CONTAINER-PATH>
     ports:
-      - "<HOST-PORT>:<CONTAINER-PORT>"
+      - <HOST-PORT>:<CONTAINER-PORT>
     environment:
       EXAMPLE_A: "TRUE"
       EXAMPLE_B: 0.1
