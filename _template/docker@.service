@@ -1,0 +1,26 @@
+[Unit]
+Description=%i (docker-compose)
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+TimeoutStartSec=60
+
+# Services reside in /opt/docker/<SERVICENAME>
+# Example: /opt/docker/service-a/docker-compose.yml
+WorkingDirectory=/opt/docker/%i
+
+# Remove old containers, images and volumes and update it
+ExecStartPre=/usr/local/bin/docker-compose down -v -t 60
+ExecStartPre=/usr/local/bin/docker-compose rm -fv
+ExecStartPre=/usr/local/bin/docker-compose pull
+
+# Compose up (compatibility for compose format version 3)
+ExecStart=/usr/local/bin/docker-compose --compatibility up
+
+# Compose down, remove containers and volumes
+ExecStop=/usr/local/bin/docker-compose down -v -t 60
+
+[Install]
+WantedBy=multi-user.target
