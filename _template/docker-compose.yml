@@ -1,10 +1,10 @@
 version: '3'
 services:
   <NAME>:
-    build: .
+    build: <BUILD-PATH>
     image: <IMAGE-PATH>
     volumes:
-      - /opt/<HOST-PATH>:<CONTAINER-PATH>
+      - <HOST-PATH>:<CONTAINER-PATH>
     ports:
       - "<HOST-PORT>:<CONTAINER-PORT>"
     environment:
