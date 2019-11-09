@@ -7,6 +7,9 @@ After=docker.service
 Restart=always
 TimeoutStartSec=60
 
+# Restart once a week to pull container updates
+RuntimeMaxSec=604800
+
 # Services reside in /opt/docker/<SERVICENAME>
 # Example: /opt/docker/service-a/docker-compose.yml
 WorkingDirectory=/opt/docker/%i
