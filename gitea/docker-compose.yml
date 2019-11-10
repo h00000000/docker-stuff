@@ -2,15 +2,15 @@ version: '3'
 services:
 
   server:
-    image: teamspeak
+    image: gitea/gitea:1
     volumes:
-      - /opt/teamspeak3:/var/ts3server
+      - ./data:/data
     ports:
-      - 9987:9987/udp
-      - 10011:10011
-      - 30033:30033
+      - "3000:3000"
+      - "2222:22"
     environment:
-      TS3SERVER_LICENSE: accept
+      USER_UID: 1000
+      USER_GID: 1000
     deploy:
       resources:
         limits:
