@@ -1,0 +1,82 @@
+version: '3'
+
+services:
+
+  mariadb:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - ./data/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=<PASSWORD>
+    env_file:
+      - db.env
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "512M"
+      restart_policy:
+        condition: none
+
+  redis:
+    image: redis:alpine
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+      restart_policy:
+        condition: none
+
+  server:
+    image: nextcloud:fpm-alpine
+    volumes:
+      - ./data/server:/var/www/html
+    environment:
+      - MYSQL_HOST=mariadb
+      - REDIS_HOST=redis
+    env_file:
+      - db.env
+    depends_on:
+      - mariadb
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "256M"
+      restart_policy:
+        condition: none
+
+  web-worker:
+    build: ./web-worker
+    ports:
+      - 4000:80
+    volumes:
+      - ./data/server:/var/www/html:ro
+    depends_on:
+      - server
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "256M"
+      restart_policy:
+        condition: none
+
+  cron:
+    image: nextcloud:fpm-alpine
+    volumes:
+      - ./data/server:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - mariadb
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "256M"
+      restart_policy:
+        condition: none
