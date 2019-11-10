@@ -16,5 +16,5 @@ services:
           cpus: "0.50"
           memory: "256M"
       restart_policy:
-        condition: on-failure
-        max_attempts: 10
+        condition: none
+        #restart is managed by systemd
