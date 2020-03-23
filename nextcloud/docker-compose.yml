@@ -52,7 +52,7 @@ services:
   web-worker:
     build: ./web-worker
     ports:
-      - 4000:80
+      - 127.0.0.1:4000:80
     volumes:
       - ./data/server:/var/www/html:ro
     depends_on:
